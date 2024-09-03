@@ -58,7 +58,7 @@ public class PinChange extends JFrame implements ActionListener {
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm?useSSL=false", "root", "747288");
                     Statement statement = connection.createStatement();
 
-                    String query = "UPDATE signupthree SET pin_number = '" + newPin + "' WHERE pin_number = '" + pinNumber + "'";
+                    String query = "UPDATE signupthree SET pin = '" + newPin + "' WHERE pin = '" + pinNumber + "'";
                     statement.executeUpdate(query);
 
                     JOptionPane.showMessageDialog(null, "PIN Changed Successfully");
@@ -81,6 +81,6 @@ public class PinChange extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new PinChange("1234").setVisible(true);
+        new PinChange("").setVisible(true);
     }
 }

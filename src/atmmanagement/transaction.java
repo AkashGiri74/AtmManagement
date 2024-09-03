@@ -10,51 +10,60 @@ public class transaction extends JFrame implements ActionListener {
     
     transaction(String pinNumber) {
         this.pinNumber = pinNumber;
-        setLayout(null);
+        getContentPane().setLayout(null);
         
         JLabel text = new JLabel("Please select your Transaction");
-        text.setFont(new Font("System", Font.BOLD, 38));
-        text.setBounds(100, 100, 700, 40);
-        add(text);
+        text.setBackground(Color.YELLOW);
+        text.setForeground(new Color(25, 25, 112));
+        text.setBounds(80, 95, 589, 49);
+        text.setFont(new Font("Arial Black", Font.BOLD, 32));
+        getContentPane().add(text);
         
         deposit = new JButton("Deposit");
         deposit.setBounds(170, 250, 150, 30);
         deposit.addActionListener(this);
-        add(deposit);
+        getContentPane().add(deposit);
         
         withdraw = new JButton("Withdraw");
         withdraw.setBounds(355, 250, 150, 30);
         withdraw.addActionListener(this);
-        add(withdraw);
+        getContentPane().add(withdraw);
         
         fastCash = new JButton("Fast Cash");
         fastCash.setBounds(170, 300, 150, 30);
         fastCash.addActionListener(this);
-        add(fastCash);
+        getContentPane().add(fastCash);
         
         miniStatement = new JButton("Mini Statement");
         miniStatement.setBounds(355, 300, 150, 30);
         miniStatement.addActionListener(this);
-        add(miniStatement);
+        getContentPane().add(miniStatement);
         
         pinChange = new JButton("Pin Change");
         pinChange.setBounds(170, 350, 150, 30);
         pinChange.addActionListener(this);
-        add(pinChange);
+        getContentPane().add(pinChange);
         
         balanceEnquiry = new JButton("Balance Enquiry");
         balanceEnquiry.setBounds(355, 350, 150, 30);
         balanceEnquiry.addActionListener(this);
-        add(balanceEnquiry);
+        getContentPane().add(balanceEnquiry);
         
         exit = new JButton("Exit");
         exit.setBounds(355, 400, 150, 30);
         exit.addActionListener(this);
-        add(exit);
+        getContentPane().add(exit);
         
-        setSize(800, 800);
+        setSize(887, 737);
         setLocation(300, 0);
         getContentPane().setBackground(Color.WHITE);
+        
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setForeground(new Color(255, 0, 0));
+      //  lblNewLabel.setIcon(new ImageIcon("F:\\project\\AtmManagement\\images\\atm.jpg"));
+        lblNewLabel.setIcon(new ImageIcon("/images/atm.jpg"));
+        lblNewLabel.setBounds(-18, 0, 859, 727);
+        getContentPane().add(lblNewLabel);
         setVisible(true);
     }
     

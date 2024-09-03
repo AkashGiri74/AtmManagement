@@ -7,8 +7,12 @@ import java.sql.*;
 
 public class Signup2 extends JFrame implements ActionListener {
     JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9;
-    JTextField t1, t2, t3, t5, t6, t7, t8, t9;
-    JButton b;
+    JComboBox<String> religionComboBox, categoryComboBox, incomeComboBox;
+    JTextField t5, t6, t7, t8;
+    private final ButtonGroup buttonGroup = new ButtonGroup();
+    private JRadioButton rdbtnNewRadioButton;
+    private JRadioButton rdbtnNewRadioButton_1;
+    private JButton btnNewButton;
 
     Signup2() {
         setTitle("NEW ACCOUNT APPLICATION FORM - PAGE 2");
@@ -40,15 +44,69 @@ public class Signup2 extends JFrame implements ActionListener {
         l9 = new JLabel("Senior Citizen:");
         l9.setFont(new Font("Raleway", Font.BOLD, 20));
         
-        t1 = new JTextField();
-        t1.setFont(new Font("Raleway", Font.BOLD, 14));
-        
-        t2 = new JTextField();
-        t2.setFont(new Font("Raleway", Font.BOLD, 14));
-        
-        t3 = new JTextField();
-        t3.setFont(new Font("Raleway", Font.BOLD, 14));
-        
+        // Religion ComboBox
+        religionComboBox = new JComboBox<>();
+        religionComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
+            "--select--", "Hinduism", "Islam", "Christianity", "Sikhism", "Buddhism", 
+            "Jainism", "Zoroastrianism (Parsi)", "Judaism", "Bahá'í Faith", 
+            "Tribal Religions", "Shinto", "Taoism", "Confucianism", "Druze", 
+            "Yazidism", "Tenrikyo", "Cao Dai", "Vodou (Voodoo)", "Santería", 
+            "Rastafarianism", "Atheism", "Agnosticism", "Humanism", "Scientology", 
+            "Unitarian Universalism", "Wicca", "Paganism", "Druidry", 
+            "Shamanism", "Spiritism", "Eckankar", "Raelism", "Thelema", 
+            "Church of the Flying Spaghetti Monster (Pastafarianism)", "Falun Gong", 
+            "Hare Krishna (ISKCON)", "Bön", "Sikh Dharma", "Gnosticism", 
+            "Sufism", "Candomblé", "Ifá", "Hermeticism", "Zoroastrianism (Mazdaism)", 
+            "Alawite", "Ayyavazhi", "Catharism", "Manichaeism", "Nestorianism", 
+            "Sabianism", "Samaritanism", "Mandaeism", "Ashurism", "Tengriism", 
+            "Ancient Egyptian Religion", "Mesopotamian Religion", 
+            "Ancient Greek Religion", "Ancient Roman Religion", 
+            "Norse Religion (Asatru)", "Celtic Polytheism", "Slavic Native Faith", 
+            "Baltic Religion (Romuva)", "Tengrism", "Korean Shamanism (Muism)", 
+            "African Traditional Religions", "Zulu Religion", "Yoruba Religion", 
+            "Akan Religion", "Oromo Religion", "Igbo Religion", 
+            "Native American Religions", "Australian Aboriginal Religions", 
+            "Maori Religion", "Inuit Religion", "Shona Religion", 
+            "Voodoo (Haitian Vodou)", "Tumbuka Religion", "Aztec Religion", 
+            "Inca Religion", "Maya Religion", "Shaktiism", "Tantrism", 
+            "Vaishnavism", "Shaivism", "Smarta Tradition", "Lingayatism", 
+            "Aghori", "Radha Soami", "Ramakrishna Mission", "Vedanta", 
+            "Sant Mat", "Kabir Panth", "Gaudiya Vaishnavism", "Arya Samaj", 
+            "Brahmo Samaj", "Satya Sai Organization", "Ananda Marga", 
+            "Zailmukhi (Godianism)"
+        }));
+        religionComboBox.setFont(new Font("Raleway", Font.BOLD, 14));
+
+        // Category ComboBox
+        categoryComboBox = new JComboBox<>();
+        categoryComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
+            "--select--", "Brahmin", "Kshatriya", "Vaishya", "Shudra", "Rajput", 
+            "Maratha", "Jat", "Yadav", "Kayastha", "Baniya", "Koli", "Gujjar", 
+            "Dalit (Scheduled Castes)", "Scheduled Tribes (ST)", "Lingayat", "Nair", 
+            "Ezhava", "Reddy", "Patel", "Kamma", "Bhumihar", "Chamar", "Ahir", 
+            "Kurmi", "Lodhi", "Goud", "Vanniyar", "Balija", "Thakur", "Lohana", 
+            "Saini", "Nadar", "Mudaliar", "Iyer", "Iyengar", "Khatri", "Meena", 
+            "Agrawal", "Sindhi", "Kori", "Kamma", "Gounder", "Nadars", "Ezhavas", 
+            "Kammas", "Kolis", "Yadavas", "Reddis", "Kurubas", "OBC (Other Backward Classes)", 
+            "Brahmo Samaj", "Vishwakarma", "Bhandari", "Ror", "Mali", "Sunar", 
+            "Maheshwari", "Arain", "Gorkha", "Bhil", "Kol", "Mahajan", "Kapu", 
+            "Devanga", "Panjabi Khatri", "Banjaras", "Khatik", "Meo", "Madiga", 
+            "Mahar", "Balija", "Shetty", "Baghel", "Banias", "Charan", "Damor", 
+            "Dhobi", "Gadariya", "Gaud Saraswat Brahmin", "Ghosh", "Golla", 
+            "Gowda", "Gurjar", "Harijan", "Holeya", "Irula", "Jangid Brahmin", 
+            "Kaibarta", "Koch", "Kuruba", "Lambadi", "Linga Balija", "Mudiraj", 
+            "Muslim Sheikh", "Vaddera"
+        }));
+        categoryComboBox.setFont(new Font("Raleway", Font.BOLD, 14));
+
+        // Income ComboBox
+        incomeComboBox = new JComboBox<>();
+        incomeComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
+            "--select--", "Below 1 Lakh", "1 Lakh - 2.5 Lakhs", "2.5 Lakhs - 5 Lakhs", 
+            "5 Lakhs - 10 Lakhs", "10 Lakhs - 20 Lakhs", "Above 20 Lakhs"
+        }));
+        incomeComboBox.setFont(new Font("Raleway", Font.BOLD, 14));
+
         t5 = new JTextField();
         t5.setFont(new Font("Raleway", Font.BOLD, 14));
         
@@ -61,107 +119,116 @@ public class Signup2 extends JFrame implements ActionListener {
         t8 = new JTextField();
         t8.setFont(new Font("Raleway", Font.BOLD, 14));
         
-        t9 = new JTextField();
-        t9.setFont(new Font("Raleway", Font.BOLD, 14));
-        
-        b = new JButton("Next");
-        b.setFont(new Font("Raleway", Font.BOLD, 14));
-        b.setBackground(Color.BLACK);
-        b.setForeground(Color.WHITE);
-        
-        setLayout(null);
+        getContentPane().setLayout(null);
         
         l1.setBounds(290, 30, 600, 30);
-        add(l1);
+        getContentPane().add(l1);
         
         l2.setBounds(100, 80, 150, 30);
-        add(l2);
-        
-        t1.setBounds(300, 80, 400, 30);
-        add(t1);
+        getContentPane().add(l2);
         
         l3.setBounds(100, 130, 150, 30);
-        add(l3);
-        
-        t2.setBounds(300, 130, 400, 30);
-        add(t2);
+        getContentPane().add(l3);
         
         l4.setBounds(100, 180, 150, 30);
-        add(l4);
-        
-        t3.setBounds(300, 180, 400, 30);
-        add(t3);
+        getContentPane().add(l4);
         
         l5.setBounds(100, 230, 150, 30);
-        add(l5);
-        
-        t5.setBounds(300, 230, 400, 30);
-        add(t5);
+        getContentPane().add(l5);
         
         l6.setBounds(100, 280, 150, 30);
-        add(l6);
-        
-        t6.setBounds(300, 280, 400, 30);
-        add(t6);
+        getContentPane().add(l6);
         
         l7.setBounds(100, 330, 150, 30);
-        add(l7);
+        getContentPane().add(l7);
         
-        t7.setBounds(300, 330, 400, 30);
-        add(t7);
-        
-        l8.setBounds(100, 380, 150, 30);
-        add(l8);
-        
-        t8.setBounds(300, 380, 400, 30);
-        add(t8);
+        l8.setBounds(100, 380, 173, 39);
+        getContentPane().add(l8);
         
         l9.setBounds(100, 430, 150, 30);
-        add(l9);
+        getContentPane().add(l9);
         
-        t9.setBounds(300, 430, 400, 30);
-        add(t9);
+        religionComboBox.setBounds(300, 80, 400, 30);
+        getContentPane().add(religionComboBox);
         
-        b.setBounds(620, 500, 80, 30);
-        add(b);
+        categoryComboBox.setBounds(300, 130, 400, 30);
+        getContentPane().add(categoryComboBox);
         
-        b.addActionListener(this);
+        incomeComboBox.setBounds(300, 180, 400, 30);
+        getContentPane().add(incomeComboBox);
         
-        getContentPane().setBackground(Color.WHITE);
+        t5.setBounds(300, 230, 400, 30);
+        getContentPane().add(t5);
         
-        setSize(850, 600); // Adjusted size to fit all components
-        setLocation(400, 20);
+        t6.setBounds(300, 280, 400, 30);
+        getContentPane().add(t6);
+        
+        t7.setBounds(300, 330, 400, 30);
+        getContentPane().add(t7);
+        
+        t8.setBounds(300, 380, 400, 30);
+        getContentPane().add(t8);
+        
+        rdbtnNewRadioButton = new JRadioButton("yes");
+        buttonGroup.add(rdbtnNewRadioButton);
+        rdbtnNewRadioButton.setBounds(300, 438, 111, 23);
+        getContentPane().add(rdbtnNewRadioButton);
+        
+        rdbtnNewRadioButton_1 = new JRadioButton("No");
+        buttonGroup.add(rdbtnNewRadioButton_1);
+        rdbtnNewRadioButton_1.setBounds(443, 438, 111, 23);
+        getContentPane().add(rdbtnNewRadioButton_1);
+        
+        btnNewButton = new JButton("Next");
+        btnNewButton.setBounds(572, 438, 89, 25);
+        getContentPane().add(btnNewButton);
+        btnNewButton.addActionListener(this);
+        
+        setSize(850, 550);
+        setLocation(300, 100);
         setVisible(true);
     }
-    
+
+    @Override
     public void actionPerformed(ActionEvent ae) {
-        String religion = t1.getText();
-        String category = t2.getText();
-        String income = t3.getText();
+        String religion = (String) religionComboBox.getSelectedItem();
+        String category = (String) categoryComboBox.getSelectedItem();
+        String income = (String) incomeComboBox.getSelectedItem();
         String qualification = t5.getText();
         String occupation = t6.getText();
         String panNumber = t7.getText();
         String aadharNumber = t8.getText();
-        String seniorCitizen = t9.getText();
         
-        // Validate all required fields are filled
-        if (religion.trim().isEmpty() || category.trim().isEmpty() || income.trim().isEmpty() || 
-            qualification.trim().isEmpty() || occupation.trim().isEmpty() || panNumber.trim().isEmpty() || 
-            aadharNumber.trim().isEmpty() || seniorCitizen.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Fill all the required fields");
+        // Perform input validation
+        if (religion.equals("--select--") || category.equals("--select--") || income.equals("--select--") || 
+            qualification.isEmpty() || occupation.isEmpty() || panNumber.isEmpty() || aadharNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are required.");
+            return;
+        }
+
+        if (aadharNumber.length() != 12) {
+            JOptionPane.showMessageDialog(this, "Invalid aadhar number");
+            return;
+        } 
+
+        if (panNumber.length() != 10) {
+            JOptionPane.showMessageDialog(this, "Invalid pan number");
             return;
         }
         
-        Connection conn = null;
+        Connection c = null;
         PreparedStatement pstmt = null;
         
         try {
+            // Create a mysql object to handle database connection
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm?useSSL=false", "root", "747288");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm?useSSL=false", "root", "747288");
+
+            // Insert data into the signuptwo table
+            String sql = "INSERT INTO signuptwo (religion, category, income, qualification, occupation, pan_number, aadhar_number) " +
+                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            pstmt = c.prepareStatement(sql);
             
-            // Insert data into the `signuptwo` table
-            String sql = "INSERT INTO signuptwo (religion, category, income, qualification, occupation, pan_number, aadhar_number, senior_citizen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, religion);
             pstmt.setString(2, category);
             pstmt.setString(3, income);
@@ -169,24 +236,35 @@ public class Signup2 extends JFrame implements ActionListener {
             pstmt.setString(5, occupation);
             pstmt.setString(6, panNumber);
             pstmt.setString(7, aadharNumber);
-            pstmt.setString(8, seniorCitizen);
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Details saved successfully.");
+                if(ae.getSource() == btnNewButton) {
+                    setVisible(false);
+                    new Signup3().setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "An error occurred while saving details.");
+            }
             
-            pstmt.executeUpdate();
-            new Signup3().setVisible(true); // Assuming this is the next page
-            setVisible(false);
-        } catch (Exception e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "An error occurred while connecting to the database.");
         } finally {
             try {
                 if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
+                if (c != null) c.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
+
     
+
     public static void main(String[] args) {
-        new Signup2().setVisible(true);
+        new Signup2();
     }
 }

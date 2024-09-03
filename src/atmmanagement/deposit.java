@@ -11,26 +11,24 @@ public class deposit extends JFrame implements ActionListener {
     
     deposit(String pinNumber) {
         this.pinNumber = pinNumber;
-        
-        // Set up the JFrame
-        setLayout(null);
+        getContentPane().setLayout(null);
         
         JLabel text = new JLabel("Enter the amount you want to deposit");
         text.setBounds(190, 200, 400, 35);
-        add(text);
+        getContentPane().add(text);
          
         amount = new JTextField();
         amount.setBounds(190, 260, 320, 25);
-        add(amount);
+        getContentPane().add(amount);
         
         deposit = new JButton("Deposit");
         deposit.setBounds(355, 388, 150, 35);
-        add(deposit);
+        getContentPane().add(deposit);
         deposit.addActionListener(this);
         
         back = new JButton("Back");
         back.setBounds(355, 433, 150, 35);
-        add(back);
+        getContentPane().add(back);
         back.addActionListener(this);
         
         setSize(800, 800);
